@@ -73,7 +73,7 @@ class Sim:
         # variables
         self.key = pygame.key.get_pressed() # getting the pressed keys if any
         
-        sim.box.set_velocity([1, -1]) # resetting the velocity, you can set the velocity of the box here
+        sim.box.set_velocity([2, 1]) # resetting the velocity, you can set the velocity of the box here
         
         # applying the forces to the sprite
         self.box.rect.x += self.box.velocity[0]
@@ -97,19 +97,6 @@ class Sim:
         if self.box.rect.colliderect(self.border_right): # checking if the box collides with the right border
             self.box.set_velocity([0, self.box.velocity[1]]) # setting the velocity to 0 if the box hits the right border
             self.box.rect.x = self.screen.get_width() - self.box.rect.width - 10 # putting the box on the correct position against the right border
-        
-        if self.box.rect.y < 0: # checking if the box is off the top side of the screen
-            self.box.set_velocity([self.box.velocity[0], 0]) # setting the velocity to 0 if the box is off the top side of the screen
-            self.box.rect.y = 10 # putting the box on the correct position against the top side of the screen
-        if self.box.rect.y > self.screen.get_height() - self.box.rect.height: # checking if the box is off the bottom side of the screen
-            self.box.set_velocity([self.box.velocity[0], 0]) # setting the velocity to 0 if the box is off the bottom side of the screen
-            self.box.rect.y = self.screen.get_height() - self.box.rect.height - 10 # putting the box on the correct position against the bottom side of the screen
-        if self.box.rect.x < 0: # checking if the box is off the left side of the screen
-            self.box.set_velocity([0, self.box.velocity[1]]) # setting the velocity to 0 if the box is off the left side of the screen
-            self.box.rect.x = 10 # putting the box on the correct position against the left side of the screen
-        if self.box.rect.x > self.screen.get_width() - self.box.rect.width: # checking if the box is off the right side of the screen
-            self.box.set_velocity([0, self.box.velocity[1]]) # setting the velocity to 0 if the box is off the right side of the screen
-            self.box.rect.x = self.screen.get_width() - self.box.rect.width - 10 # putting the box on the correct position against the right side of the screen
         
         # render handler
         self.screen.blit(self.box.image, (self.box.rect.x, self.box.rect.y)) # drawing the box onto the screen
